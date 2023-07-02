@@ -4,9 +4,11 @@
     <div class="input-container">
       <label for="weight">Váha (kg): </label>
       <input v-model.number="weight" type="number" id="weight" />
+      <p v-if="weight < 0" class="error-message">Hodnota nesmí být záporná</p>
+
     </div>
     <div class="result-container">
-      <p>{{ weight }} kg je přibližně {{ convertWeightToCherries() }} kusů třešní.</p>
+      <p v-if="weight >= 0">{{ weight }} kg je přibližně {{ convertWeightToCherries() }} kusů třešní.</p>
     </div>
   </div>
 
@@ -75,6 +77,11 @@ export default {
 }
 .result-container {
   font-size: 20px;
+}
+.error-message {
+  color: red;
+  font-size: 20px;
+  padding-top: 20px;
 }
 
 .container-count {
